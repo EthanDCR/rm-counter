@@ -1,0 +1,77 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.loginContainer {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+}
+
+.loginContainer h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.loginContainer input {
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.loginContainer input:focus {
+  border-color: #000;
+}
+
+.loginContainer input::placeholder {
+  color: #999;
+}
+
+.loginContainer button {
+  padding: 14px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.loginContainer button:first-of-type {
+  background-color: #000;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.loginContainer button:first-of-type:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.loginContainer button:last-of-type {
+  background-color: white;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.loginContainer button:last-of-type:hover {
+  background-color: #f9f9f9;
+}

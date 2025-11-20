@@ -1,0 +1,270 @@
+.page {
+  --background: #f5f5f5;
+  --foreground: #fff;
+
+  --text-primary: #000;
+  --text-secondary: #666;
+
+  --button-primary-hover: #333;
+  --button-secondary-hover: #f9f9f9;
+  --button-secondary-border: #e8e8e8;
+
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-oswald);
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+.main {
+  gap: 8px;
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  max-width: 800px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--foreground);
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 24px;
+}
+
+.intro h1 {
+  max-width: 320px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+.intro p {
+  max-width: 440px;
+  font-size: 18px;
+  line-height: 32px;
+  text-wrap: balance;
+  color: var(--text-secondary);
+}
+
+.intro a {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.ctas {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 440px;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.ctas a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 128px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 500;
+}
+
+a.primary {
+  background: var(--text-primary);
+  color: var(--background);
+  gap: 8px;
+}
+
+a.secondary {
+  border-color: var(--button-secondary-border);
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    background: var(--button-primary-hover);
+    border-color: transparent;
+  }
+
+  a.secondary:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 48px 24px;
+  }
+
+  .intro {
+    gap: 16px;
+  }
+
+  .intro h1 {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -1.92px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert();
+  }
+
+  .page {
+    --background: #000;
+    --foreground: #000;
+
+    --text-primary: #ededed;
+    --text-secondary: #999;
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+    --button-secondary-border: #1a1a1a;
+  }
+}
+
+.counter {
+  user-select: none;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  background-color: grey;
+  border: 2px solid #000;
+  border-radius: 10px;
+  width: 500px;
+  height: 80px;
+  transition: all 0.3s;
+}
+
+.counter:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.counter h1 {
+  margin-left: 10px;
+  color: #000;
+  font-size: 20px;
+}
+
+.counterRight {
+  font-weight: bold;
+  font-size: 36px;
+  margin-right: 10px;
+  height: 80%;
+  width: 150px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.counterRight:hover {
+  background-color: #333;
+}
+
+.counterControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.decrementBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  padding: 0;
+  line-height: 1;
+}
+
+.decrementBtn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.buttons {
+  margin-bottom: 20px;
+  width: 500px;
+  display: flex;
+  gap: 10px;
+}
+
+.buttons button {
+
+  font-family: var(--font-oswald);
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s;
+}
+
+.buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.submitContainer {
+  margin-top: 20px;
+  background-color: grey;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+}
+
+.submitContainer h2 {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  width: 500px;
+  color: #fff;
+  margin: 0;
+}
+
+.submitContainer:hover {
+  background-color: #333;
+}
