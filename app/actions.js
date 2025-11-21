@@ -3,7 +3,15 @@
 import client from "../lib/db.js";
 import bcrypt from "bcrypt";
 
+export async function checkLogin(username, password, userDatabase) {
 
+  if (!userDatabase) {
+    return false;
+  } else {
+    const userPassword = await bcrypt.compare(password, userDatabase.password);
+    return userPassword;
+  }
+}
 
 
 export async function getUser(userName) {
@@ -12,7 +20,13 @@ export async function getUser(userName) {
     sql: 'select * from users where username = ?',
     args: [userName]
   })
-  return JSON.parse(JSON.stringify(result.rows[0]));
+
+  if (!result.rows[0]) {
+    return null;
+  }
+  else {
+    return JSON.parse(JSON.stringify(result.rows[0]));
+  }
 }
 
 
@@ -31,11 +45,32 @@ export async function createUser(user) {
 }
 
 
-
-
-export async function updateTotal(sales, dropPrice, transitions, pitched, interactions, doorKnocks) {
-
+export async function getAllStats() {
+  const stats = {
+    time: 'allTime',
+    leads: 110,
+    calls: 1100,
+    knocks: 320,
+    inspections: 89,
+    presentations: 32,
+    closes: 20,
+  }
+  return stats;
 }
+
+export async function getTodayStats() {
+  const stats = {
+    time: 'today',
+    leads: 10,
+    calls: 50,
+    knocks: 40,
+    inspections: 7,
+    presentations: 5,
+    closes: 3,
+  }
+  return stats;
+}
+
 
 
 

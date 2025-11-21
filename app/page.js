@@ -3,17 +3,55 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getAllStats } from "./actions";
+import { getTodayStats } from "./actions";
+import Stats from "./stats/Stats";
+
+
 
 export default function Home() {
   const router = useRouter();
-  const [sales, setSales] = useState(0);
-  const [dropPrice, setDropPrice] = useState(0);
-  const [transitions, setTransitions] = useState(0);
-  const [pitches, setPitches] = useState(0);
-  const [interactions, setInteractions] = useState(0);
-  const [doorKnocks, setDoorKnocks] = useState(0);
+  const [leads, setleads] = useState(0);
+  const [call, setCalls] = useState(0);
+  const [knocks, setknocks] = useState(0);
+  const [inspections, setinspections] = useState(0);
+  const [presentations, setpresentations] = useState(0);
+  const [closes, setcloses] = useState(0);
+  const [name, setName] = useState("");
+  const [viewMode, setViewMode] = useState("today");
+
+
+
+  useEffect(() => {
+    const getStats = async () => {
+
+      let allStats;
+
+      if (viewMode === "today") {
+        allStats = await getTodayStats();
+      } else if (viewMode === "allTime") {
+        allStats = await getAllStats();
+      }
+
+      setleads(allStats.leads);
+      setCalls(allStats.calls);
+      setknocks(allStats.knocks);
+      setinspections(allStats.inspections);
+      setpresentations(allStats.presentations);
+      setcloses(allStats.closes);
+    }
+    getStats();
+  }, [viewMode]);
+
+
+  useEffect(() => {
+    const getName = () => {
+      setName(localStorage.getItem('name'));
+    }
+    getName();
+  }, []);
 
   const isLoggedIn = () => {
     const user = localStorage.getItem('userId');
@@ -25,25 +63,36 @@ export default function Home() {
     isLoggedIn();
   }, []);
 
+  const changeView = (view) => {
+    switch (view) {
+      case "today":
+        setViewMode("today");
+        break;
+      case "allTime":
+        setViewMode("allTime");
+        break;
+    }
+  }
+
   const handleClick = (action) => {
     switch (action) {
-      case "sales":
-        setSales(sales + 1);
+      case "leads":
+        setleads(leads + 1);
         break;
-      case "dropPrice":
-        setDropPrice(dropPrice + 1);
+      case "call":
+        setCalls(call + 1);
         break;
-      case "transition":
-        setTransitions(transitions + 1);
+      case "knocks":
+        setknocks(knocks + 1);
         break;
-      case "pitch":
-        setPitches(pitches + 1);
+      case "inspections":
+        setinspections(inspections + 1);
         break;
-      case "interaction":
-        setInteractions(interactions + 1);
+      case "presentations":
+        setpresentations(presentations + 1);
         break;
-      case "doorKnock":
-        setDoorKnocks(doorKnocks + 1);
+      case "closes":
+        setcloses(closes + 1);
         break;
     }
   }
@@ -51,95 +100,93 @@ export default function Home() {
 
   const handleDecrement = (action) => {
     switch (action) {
-      case "sales":
-        setSales(sales - 1);
+      case "leads":
+        setleads(leads - 1);
         break;
-      case "dropPrice":
-        setDropPrice(dropPrice - 1);
+      case "call":
+        setDropPrice(call - 1);
         break;
-      case "transition":
-        setTransitions(transitions - 1);
+      case "knocks":
+        setknocks(knocks - 1);
         break;
-      case "pitch":
-        setPitches(pitches - 1);
+      case "inspections":
+        setinspections(inspections - 1);
         break;
-      case "interaction":
-        setInteractions(interactions - 1);
+      case "presentations":
+        setpresentations(presentations - 1);
         break;
-      case "doorKnock":
-        setDoorKnocks(doorKnocks - 1);
+      case "closes":
+        setcloses(closes - 1);
         break;
     }
   }
 
-
-
-
   return (
     <div className={styles.page}>
+      <Stats viewMode={viewMode}></Stats>
       <main className={styles.main}>
-        <h1>COUNTER</h1>
+        {name ? <h1>{name.toUpperCase()}S COUNTER</h1> : <h1>COUNTER</h1>}
         <div className={styles.buttons}>
-          <button>Today</button>
-          <button>All Time</button>
+          <button onClick={() => changeView("today")}>Today</button>
+          <button onClick={() => changeView("allTime")}>All Time</button>
           <button onClick={() => { localStorage.clear(); isLoggedIn() }}>Logout</button>
         </div>
         <div className={styles.counter}>
-          <h1>SALES</h1>
+          <h1>LEADS</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("sales")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("sales")} className={styles.counterRight}>
-              <strong>{sales}</strong>
+            <button onClick={() => handleDecrement("leads")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("leads")} className={styles.counterRight}>
+              <strong>{leads}</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.counter}>
-          <h1>DROP PRICE</h1>
+          <h1>CALLS</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("dropPrice")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("dropPrice")} className={styles.counterRight}>
-              <strong>{dropPrice}</strong>
+            <button onClick={() => handleDecrement("call")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("call")} className={styles.counterRight}>
+              <strong>{call}</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.counter}>
-          <h1>TRANSITIONS</h1>
+          <h1>KNOCKS</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("transition")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("transition")} className={styles.counterRight}>
-              <strong>{transitions}</strong>
+            <button onClick={() => handleDecrement("knocks")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("knocks")} className={styles.counterRight}>
+              <strong>{knocks}</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.counter}>
-          <h1>PITCHED</h1>
+          <h1>INSPECTIONS</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("pitch")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("pitch")} className={styles.counterRight}>
-              <strong>{pitches}</strong>
+            <button onClick={() => handleDecrement("inspections")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("inspections")} className={styles.counterRight}>
+              <strong>{inspections}</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.counter}>
-          <h1>INTERACTIONS</h1>
+          <h1>PRESENTATIONS</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("interaction")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("interaction")} className={styles.counterRight}>
-              <strong>{interactions}</strong>
+            <button onClick={() => handleDecrement("presentations")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("presentations")} className={styles.counterRight}>
+              <strong>{presentations}</strong>
             </div>
           </div>
         </div>
 
         <div className={styles.counter}>
-          <h1>DOORS KNOCKED</h1>
+          <h1>CLOSES</h1>
           <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("doorKnock")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("doorKnock")} className={styles.counterRight}>
-              <strong>{doorKnocks}</strong>
+            <button onClick={() => handleDecrement("closes")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("closes")} className={styles.counterRight}>
+              <strong>{closes}</strong>
             </div>
           </div>
         </div>

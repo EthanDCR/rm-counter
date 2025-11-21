@@ -75,3 +75,11 @@
 .loginContainer button:last-of-type:hover {
   background-color: #f9f9f9;
 }
+
+.notFound {
+  font-size: 24px;
+  text-decoration: underline;
+  margin-left: 50px;
+  margin-top: 20px;
+  color: black;
+}
