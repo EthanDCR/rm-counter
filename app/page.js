@@ -48,6 +48,33 @@ export default function Home() {
     }
   }
 
+
+  const handleDecrement = (action) => {
+    switch (action) {
+      case "sales":
+        setSales(sales - 1);
+        break;
+      case "dropPrice":
+        setDropPrice(dropPrice - 1);
+        break;
+      case "transition":
+        setTransitions(transitions - 1);
+        break;
+      case "pitch":
+        setPitches(pitches - 1);
+        break;
+      case "interaction":
+        setInteractions(interactions - 1);
+        break;
+      case "doorKnock":
+        setDoorKnocks(doorKnocks - 1);
+        break;
+    }
+  }
+
+
+
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -60,7 +87,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>SALES</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("sales")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("sales")} className={styles.counterRight}>
               <strong>{sales}</strong>
             </div>
@@ -70,7 +97,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>DROP PRICE</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("dropPrice")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("dropPrice")} className={styles.counterRight}>
               <strong>{dropPrice}</strong>
             </div>
@@ -80,7 +107,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>TRANSITIONS</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("transition")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("transition")} className={styles.counterRight}>
               <strong>{transitions}</strong>
             </div>
@@ -90,7 +117,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>PITCHED</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("pitch")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("pitch")} className={styles.counterRight}>
               <strong>{pitches}</strong>
             </div>
@@ -100,7 +127,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>INTERACTIONS</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("interaction")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("interaction")} className={styles.counterRight}>
               <strong>{interactions}</strong>
             </div>
@@ -110,7 +137,7 @@ export default function Home() {
         <div className={styles.counter}>
           <h1>DOORS KNOCKED</h1>
           <div className={styles.counterControls}>
-            <button className={styles.decrementBtn}>-</button>
+            <button onClick={() => handleDecrement("doorKnock")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("doorKnock")} className={styles.counterRight}>
               <strong>{doorKnocks}</strong>
             </div>
