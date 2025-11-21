@@ -52,8 +52,8 @@ export async function getAllStats() {
     calls: 1100,
     knocks: 320,
     inspections: 89,
-    presentations: 32,
-    closes: 20,
+    presentations: 50,
+    closes: 30,
   }
   return stats;
 }
@@ -66,7 +66,7 @@ export async function getTodayStats() {
     knocks: 40,
     inspections: 7,
     presentations: 5,
-    closes: 3,
+    closes: 10,
   }
   return stats;
 }

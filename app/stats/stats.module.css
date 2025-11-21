@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 12px;
   padding: 20px;
-  background-color: #000;
+  background-color: #1e293b;
   border-radius: 12px;
   border: 2px solid #fff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -51,7 +51,12 @@
   font-weight: bold;
   color: #fff;
   text-align: center;
-  background-color: #000;
+  background-color: black;
   padding: 8px;
   border-radius: 6px;
+}
+
+
+.date {
+  text-align: center;
 }

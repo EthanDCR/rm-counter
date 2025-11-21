@@ -22,8 +22,6 @@ export default function Home() {
   const [name, setName] = useState("");
   const [viewMode, setViewMode] = useState("today");
 
-
-
   useEffect(() => {
     const getStats = async () => {
 
@@ -34,6 +32,7 @@ export default function Home() {
       } else if (viewMode === "allTime") {
         allStats = await getAllStats();
       }
+
 
       setleads(allStats.leads);
       setCalls(allStats.calls);
@@ -192,16 +191,9 @@ export default function Home() {
         </div>
 
 
-        <div className={styles.submitContainer} onClick={() => console.log("submit stats")}>
-          <h2>Submit todays stats</h2>
+        <div className={styles.submitContainer} onClick={() => console.log("submit stats clicked")}>
+          <h2>Submit Todays Stats</h2>
         </div>
-
-
-
-
-
-
-
       </main >
     </div >
   );

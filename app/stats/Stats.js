@@ -30,7 +30,7 @@ export default function Stats({ viewMode }) {
 
       } else if (viewMode === "today") {
         setCallsToLeads(getPercent(todayStats.leads, todayStats.calls));
-        setPresentationToClose(getPercent(todayStats.closes, todayStats.presentations));
+        setPresentationToClose(getPercent(todayStats.presentations, todayStats.closes));
         setKnocksToLeads(getPercent(todayStats.leads, todayStats.knocks));
         setCallsAndKnocksToCloses(getPercent(todayStats.closes, sumKnocksCalls));
       }
@@ -59,10 +59,16 @@ export default function Stats({ viewMode }) {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>Knocks + Calls to Closes: {}</div>
+          <div className={styles.statLabel}>Knocks + Calls to Closes</div>
           <div className={styles.statValue}>{callsAndKnocksToCloses}%</div>
         </div>
-      </div >
+
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}>Todays Date</div>
+          <div className={styles.statValue}>{new Date().toDateString().slice(0, -4)}</div>
+        </div>
+
+      </div>
     </>
   )
 }

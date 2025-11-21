@@ -1,5 +1,5 @@
 .page {
-  --background: #f5f5f5;
+  --background: #1e293b;
   --foreground: #fff;
 
   --text-primary: #000;
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-oswald);
-  background-color: var(--background);
+  background-color: #1e293b;
   overflow: hidden;
 }
 
@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--foreground);
+  background-color: #1e293b;
   padding: 40px 60px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -247,7 +247,11 @@ a.secondary {
 }
 
 .submitContainer {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
   background-color: grey;
   user-select: none;
   cursor: pointer;
@@ -257,12 +261,11 @@ a.secondary {
 
 .submitContainer h2 {
   font-size: 24px;
-  display: flex;
-  justify-content: center;
   padding: 16px;
   width: 500px;
   color: #fff;
   margin: 0;
+  text-align: center;
 }
 
 .submitContainer:hover {
