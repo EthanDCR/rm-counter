@@ -64,7 +64,6 @@ export default function Stats({ viewMode }) {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>Todays Date</div>
           <div className={styles.statValue}>{new Date().toDateString().slice(0, -4)}</div>
         </div>
 

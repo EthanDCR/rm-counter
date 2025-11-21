@@ -1,59 +1,76 @@
 .statsContainer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  background-color: #1e293b;
-  border-radius: 12px;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  width: 250px;
+  gap: 14px;
+  padding: 24px;
+  background: linear-gradient(145deg, #1e293b 0%, #1a2332 100%);
+  border-radius: 24px;
+  border: none;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  width: 280px;
   height: 90vh;
   overflow-y: auto;
-  margin-right: 20px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.statsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.statsContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .statsTitle {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   text-align: center;
-  margin: 0 0 8px 0;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #fff;
+  margin: 0 0 12px 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
   color: #fff;
+  letter-spacing: 1.5px;
 }
 
 .statCard {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 16px;
-  background-color: grey;
-  border: 2px solid #fff;
-  border-radius: 8px;
+  gap: 10px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
   transition: all 0.3s;
+  backdrop-filter: blur(10px);
 }
 
 .statCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
 }
 
 .statLabel {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
-  color: #fff;
+  color: #64748b;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .statValue {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
-  color: #fff;
+  color: #3b82f6;
   text-align: center;
-  background-color: black;
-  padding: 8px;
-  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 

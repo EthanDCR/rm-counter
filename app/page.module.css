@@ -1,25 +1,16 @@
 .page {
-  --background: #1e293b;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #333;
-  --button-secondary-hover: #f9f9f9;
-  --button-secondary-border: #e8e8e8;
-
   display: flex;
   height: 100vh;
   align-items: center;
   justify-content: center;
   font-family: var(--font-oswald);
-  background-color: #1e293b;
+  background-color: #0f172a;
   overflow: hidden;
+  gap: 24px;
 }
 
 .main {
-  gap: 8px;
+  gap: 12px;
   display: flex;
   height: 90vh;
   width: 100%;
@@ -27,12 +18,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #1e293b;
-  padding: 40px 60px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
+  background: linear-gradient(145deg, #1e293b 0%, #1a2332 100%);
+  padding: 48px 60px;
+  border-radius: 24px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .intro {
@@ -151,22 +144,27 @@ a.secondary {
   align-items: center;
   justify-content: space-between;
   display: flex;
-  background-color: grey;
-  border: 2px solid #000;
-  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
   width: 500px;
   height: 80px;
   transition: all 0.3s;
+  backdrop-filter: blur(10px);
 }
 
 .counter:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
 }
 
 .counter h1 {
-  margin-left: 10px;
-  color: #000;
-  font-size: 20px;
+  margin-left: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .counterRight {
@@ -175,18 +173,21 @@ a.secondary {
   margin-right: 10px;
   height: 80%;
   width: 150px;
-  background-color: #000;
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
 .counterRight:hover {
-  background-color: #333;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  transform: scale(1.02);
 }
 
 .counterControls {
@@ -199,9 +200,9 @@ a.secondary {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #000;
-  background-color: #fff;
-  color: #000;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
@@ -214,36 +215,41 @@ a.secondary {
 }
 
 .decrementBtn:hover {
-  background-color: #000;
+  background-color: #ef4444;
+  border-color: #ef4444;
   color: #fff;
   transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
 
 .buttons {
   margin-bottom: 20px;
   width: 500px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .buttons button {
-
   font-family: var(--font-oswald);
   flex: 1;
-  padding: 12px;
-  font-size: 16px;
+  padding: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  border: 2px solid #000;
-  border-radius: 8px;
-  background-color: grey;
-  color: #000;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
   transition: all 0.3s;
+  letter-spacing: 0.5px;
 }
 
 .buttons button:hover {
-  background-color: #000;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-color: #3b82f6;
   color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
 }
 
 .submitContainer {
@@ -252,22 +258,33 @@ a.secondary {
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  background-color: grey;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   user-select: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  border-radius: 8px;
+  transition: all 0.3s;
+  border-radius: 16px;
 }
 
 .submitContainer h2 {
-  font-size: 24px;
-  padding: 16px;
+  font-size: 18px;
+  padding: 18px;
   width: 500px;
-  color: #fff;
+  color: #3b82f6;
   margin: 0;
   text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .submitContainer:hover {
-  background-color: #333;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-color: #3b82f6;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+.submitContainer:hover h2 {
+  color: #fff;
 }
