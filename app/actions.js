@@ -33,14 +33,15 @@ export async function getUser(userName) {
 export async function createUser(user) {
   const name = user.name;
   const username = user.username;
+  const office = user.office;
   const password = await bcrypt.hash(user.password, 10);
   if (!name || !username || !password) {
     console.error(error, "please fill out all fields");
   }
   const db = await client();
   await db.execute({
-    sql: 'insert into users ( name, username, password) values (?, ?, ?)',
-    args: [name, username, password],
+    sql: 'insert into users ( name, username, password, office) values (?, ?, ?, ?)',
+    args: [name, username, password, office],
   })
 }
 

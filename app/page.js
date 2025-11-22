@@ -7,8 +7,8 @@ import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllStats } from "./actions";
 import { getTodayStats } from "./actions";
-import Stats from "./stats/Stats";
-
+import Stats from "./components/Stats";
+import Chat from "./components/Chat";
 
 
 export default function Home() {
@@ -103,7 +103,7 @@ export default function Home() {
         setleads(leads - 1);
         break;
       case "call":
-        setDropPrice(call - 1);
+        setCalls(call - 1);
         break;
       case "knocks":
         setknocks(knocks - 1);
@@ -195,6 +195,7 @@ export default function Home() {
           <h2>Submit Todays Stats</h2>
         </div>
       </main >
+      <Chat></Chat>
     </div >
   );
 }

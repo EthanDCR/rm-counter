@@ -83,3 +83,15 @@
   margin-top: 20px;
   color: black;
 }
+
+.dropDown {
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.dropDown option {}
