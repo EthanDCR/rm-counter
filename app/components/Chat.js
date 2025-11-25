@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import styles from "./chat.module.css";
 
 
-
 export default function Chat() {
-
 
   const [office, setOffice] = useState('');
   const [name, setName] = useState('');
-
-
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     setOffice(localStorage.getItem('office'));
@@ -19,11 +18,11 @@ export default function Chat() {
 
 
   useEffect(() => {
+    const newSocket = new WebSocket("ws://localhost:5000");
+    setSocket(newSocket);
 
-    const socket = new WebSocket("ws://localhost:5000");
 
-    socket.onopen = () => {
-
+    newSocket.onopen = () => {
       const user = {
         type: 'user',
         name: localStorage.getItem('name'),
@@ -31,18 +30,38 @@ export default function Chat() {
         id: localStorage.getItem('userId'),
       }
 
-      socket.send(JSON.stringify(user));
+      newSocket.send(JSON.stringify(user));
       console.log("socket connected to server");
     }
 
-
-
-    socket.onerror = (error) => {
+    newSocket.onerror = (error) => {
       console.error(error, "error w da socket");
     }
 
-    return () => socket.close();
+
+    return () => newSocket.close();
   }, []);
+
+
+
+  const handleMessageSend = () => {
+    if (!socket || !message) {
+      console.log('socket or message not found');
+      return;
+    }
+
+    const chatObject = {
+      type: 'chat',
+      message: message,
+    }
+    try {
+      socket.send(JSON.stringify(chatObject));
+      setMessage('');
+      console.log('message sent to server');
+    } catch (error) {
+      console.error(error, 'message failed to send');
+    }
+  }
 
 
   return (
@@ -88,8 +107,12 @@ export default function Chat() {
 
         </div>
 
-        <input type="text" placeholder="Enter Your Message Here" />
-        <button>Send</button>
+        <input value={message} onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleMessageSend();
+          }
+        }} onChange={(e) => setMessage(e.target.value)} type="text" placeholder="Enter Your Message Here" />
+        <button onClick={() => handleMessageSend()}>Send Message</button>
 
       </div>
     </>
