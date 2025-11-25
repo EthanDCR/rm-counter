@@ -25,6 +25,7 @@ export default function Chat() {
     socket.onopen = () => {
 
       const user = {
+        type: 'user',
         name: localStorage.getItem('name'),
         office: localStorage.getItem('office'),
         id: localStorage.getItem('userId'),
