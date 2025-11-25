@@ -62,7 +62,7 @@ export default function login() {
     try {
       await createUser(user);
       console.log("user created");
-      localStorage.setItem('userId', user.name);
+      localStorage.setItem('userId', user.username);
       localStorage.setItem('name', user.name);
       localStorage.setItem('office', user.office);
     }

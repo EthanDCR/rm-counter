@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllStats } from "./actions";
 import { getTodayStats } from "./actions";
@@ -21,6 +21,8 @@ export default function Home() {
   const [closes, setcloses] = useState(0);
   const [name, setName] = useState("");
   const [viewMode, setViewMode] = useState("today");
+  const [messages, setMessages] = useState([]);
+
 
   useEffect(() => {
     const getStats = async () => {

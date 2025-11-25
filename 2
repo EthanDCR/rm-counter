@@ -18,23 +18,18 @@ export default function Chat() {
   }, []);
 
 
+  // on error, message, open
+  //return () => socket.close();
+
+
   useEffect(() => {
 
     const socket = new WebSocket("ws://localhost:5000");
 
     socket.onopen = () => {
-
-      const user = {
-        name: localStorage.getItem('name'),
-        office: localStorage.getItem('office'),
-        id: localStorage.getItem('userId'),
-      }
-
-      socket.send(JSON.stringify(user));
       console.log("socket connected to server");
+      socket.send("socket connection from client established")
     }
-
-
 
     socket.onerror = (error) => {
       console.error(error, "error w da socket");
@@ -51,7 +46,7 @@ export default function Chat() {
         <div className={styles.liveChat}>
           <h1>LIVE CHAT</h1>
           <div className={styles.chatButtons}>
-            {office ? <button>{office.toUpperCase()} CHAT</button> : <button>Null CHAT</button>}
+            <button>{office.toUpperCase()} CHAT</button>
             <button>ALL CHAT</button>
           </div>
 
