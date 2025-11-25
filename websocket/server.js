@@ -7,7 +7,6 @@ const clients = [];
 wss.on('connection', (ws) => {
   console.log('ws connected, total clients: ', clients.length + 1);
   clients.push(ws);
-  ws.send('Welcome to the server!');
 
   ws.on('close', () => {
     for (let i = 0; i < clients.length; i++) {
@@ -28,14 +27,28 @@ wss.on('connection', (ws) => {
         ws.office = parsed.office;
         console.log(`new client added successfully, client info -\n  office: ${ws.office},\n name:  ${ws.name},\n id:  ${ws.id}`);
         break;
+
+      case 'chat':
+        try {
+          clients.forEach(client => {
+            const messageObject = {
+              type: 'chat',
+              message: parsed.message,
+            }
+
+            client.send(JSON.stringify(messageObject));
+            console.log('message sent back to client - message:\n ' + parsed.message);
+          });
+        } catch (error) {
+          console.error('error sending messages back to client');
+        }
+        break;
     }
   })
-
 
   ws.on('error', () => {
     console.error("webSocket error");
   });
-
 
 });
 

@@ -10,6 +10,9 @@ export default function Chat() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [testResponse, setTestResponse] = useState(null);
+
+
 
   useEffect(() => {
     setOffice(localStorage.getItem('office'));
@@ -38,6 +41,10 @@ export default function Chat() {
       console.error(error, "error w da socket");
     }
 
+    newSocket.onmessage = (message) => {
+      const parsed = JSON.parse(message.data);
+      setTestResponse(parsed.message);
+    }
 
     return () => newSocket.close();
   }, []);
@@ -62,7 +69,6 @@ export default function Chat() {
       console.error(error, 'message failed to send');
     }
   }
-
 
   return (
     <>
@@ -104,6 +110,18 @@ export default function Chat() {
             <h6>Name:</h6>
             <p>chat message here</p>
           </div>
+
+          {testResponse ?
+            <div className={styles.chatMessage}>
+              <h6>Server Response:</h6>
+              <p>{testResponse}</p>
+            </div>
+            :
+            <div className={styles.chatMessage}>
+              <h6>Name:</h6>
+              <p>No response yet</p>
+            </div>
+          }
 
         </div>
 
