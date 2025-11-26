@@ -3,111 +3,153 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #1e293b;
+  background-color: #0f172a;
+  font-family: var(--font-oswald);
 }
 
 .loginContainer {
-  width: 400px;
+  width: 450px;
   display: flex;
   flex-direction: column;
-  padding: 40px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e8e8e8;
+  padding: 48px;
+  background: linear-gradient(145deg, #1e293b 0%, #1a2332 100%);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  border: none;
 }
 
 .loginContainer h2 {
   text-align: center;
   margin-bottom: 30px;
-  color: #000;
-  font-size: 28px;
-  font-weight: 600;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .loginContainer input {
-  padding: 14px 16px;
+  padding: 16px 18px;
   margin-bottom: 16px;
-  border: 2px solid #e1e1e1;
-  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
   font-size: 15px;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
   outline: none;
+  background: rgba(15, 23, 42, 0.4);
+  color: #ffffff;
+  font-family: var(--font-oswald);
+  backdrop-filter: blur(10px);
 }
 
 .loginContainer input:focus {
-  border-color: #000;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 0.6);
 }
 
 .loginContainer input::placeholder {
-  color: #999;
+  color: #64748b;
 }
 
 .loginContainer button {
-  padding: 14px;
+  padding: 16px;
   margin-top: 8px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: var(--font-oswald);
+  letter-spacing: 0.5px;
 }
 
 .loginContainer button:first-of-type {
-  background-color: #000;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
   margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .loginContainer button:first-of-type:hover {
-  background-color: #333;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .loginContainer button:last-of-type {
-  background-color: white;
-  color: #000;
-  border: 2px solid #000;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .loginContainer button:last-of-type:hover {
-  background-color: #f9f9f9;
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
 .notFound {
-  font-size: 24px;
-  text-decoration: underline;
-  margin-left: 50px;
-  margin-top: 20px;
-  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 16px;
+  padding: 12px;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  letter-spacing: 0.5px;
 }
 
 .dropDown {
-  padding: 14px 16px;
+  padding: 16px 18px;
   margin-bottom: 16px;
-  border: 2px solid #e1e1e1;
-  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
   font-size: 15px;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
   outline: none;
+  background: rgba(15, 23, 42, 0.4);
+  color: #ffffff;
+  font-family: var(--font-oswald);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.dropDown:focus {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.dropDown option {
+  background: #1e293b;
+  color: #ffffff;
 }
 
 
 .accountType {
-  color: black;
+  color: #94a3b8;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
 
 .accountTypeLink {
-  color: blue;
-  text-decoration: underline;
+  color: #3b82f6;
+  text-decoration: none;
   cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+  letter-spacing: 0.3px;
 }
 
-
 .accountTypeLink:hover {
-  color: blue;
-  opacity: 80%;
+  color: #60a5fa;
   text-decoration: underline;
 }
