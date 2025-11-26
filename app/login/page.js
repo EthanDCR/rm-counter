@@ -30,7 +30,8 @@ export default function login() {
 
     if (isAuthed) {
       localStorage.setItem('userId', username);
-      localStorage.setItem('name', name);
+      localStorage.setItem('name', userObject.name);
+      localStorage.setItem('office', userObject.office);
       router.push("/");
     } else {
       setNotFound(true);
