@@ -108,3 +108,89 @@
   left: 370px;
   top: 755px;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .page canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .canvasContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .canvasContainer canvas {
+    width: 300px;
+    height: 600px;
+  }
+
+  .rocket1, .rocket2, .rocket3, .rocket4, .rocket5 {
+    width: 80px;
+    height: 80px;
+  }
+
+  .rocket1 {
+    left: 110px;
+    top: 50px;
+  }
+
+  .rocket2 {
+    left: 110px;
+    top: 150px;
+  }
+
+  .rocket3 {
+    left: 110px;
+    top: 250px;
+  }
+
+  .rocket4 {
+    left: 110px;
+    top: 350px;
+  }
+
+  .rocket5 {
+    left: 110px;
+    top: 450px;
+  }
+
+  .label1, .label2, .label3, .label4, .label5 {
+    width: 80px;
+    text-align: center;
+  }
+
+  .label1 {
+    left: 110px;
+    top: 135px;
+  }
+
+  .label2 {
+    left: 110px;
+    top: 235px;
+  }
+
+  .label3 {
+    left: 110px;
+    top: 335px;
+  }
+
+  .label4 {
+    left: 110px;
+    top: 435px;
+  }
+
+  .label5 {
+    left: 110px;
+    top: 535px;
+  }
+}

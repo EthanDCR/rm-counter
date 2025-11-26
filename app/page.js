@@ -16,7 +16,7 @@ import { getTodayStatsFromLocalStorage } from "@/utils/localStorage";
 export default function Home() {
   const router = useRouter();
   const [leads, setleads] = useState(0);
-  const [call, setCalls] = useState(0);
+  const [calls, setCalls] = useState(0);
   const [knocks, setknocks] = useState(0);
   const [inspections, setinspections] = useState(0);
   const [presentations, setpresentations] = useState(0);
@@ -24,6 +24,7 @@ export default function Home() {
   const [name, setName] = useState("");
   const [viewMode, setViewMode] = useState("today");
   const [messages, setMessages] = useState([]);
+
 
 
 
@@ -82,12 +83,17 @@ export default function Home() {
   }
 
   const handleClick = (action) => {
+
+    const ping = new Audio('/notifping.mp3');
+    ping.play();
+
+
     switch (action) {
       case "leads":
         setleads(leads + 1);
         break;
       case "call":
-        setCalls(call + 1);
+        setCalls(calls + 1);
         break;
       case "knocks":
         setknocks(knocks + 1);
@@ -106,23 +112,50 @@ export default function Home() {
 
 
   const handleDecrement = (action) => {
+    const ping = new Audio('/minuspoints.mp3');
+    ping.play();
+
+
+
     switch (action) {
       case "leads":
+        if (leads === 0) {
+          break;
+        }
         setleads(leads - 1);
         break;
       case "call":
-        setCalls(call - 1);
+        if (calls === 0) {
+          return;
+        }
+        setCalls(calls - 1);
         break;
+
       case "knocks":
+        if (knocks === 0) {
+          break;
+        }
         setknocks(knocks - 1);
         break;
+
       case "inspections":
+        if (inspections === 0) {
+          break;
+        }
         setinspections(inspections - 1);
         break;
+
       case "presentations":
+        if (presentations === 0) {
+          break;
+        }
         setpresentations(presentations - 1);
         break;
+
       case "closes":
+        if (closes === 0) {
+          break;
+        }
         setcloses(closes - 1);
         break;
     }
@@ -144,7 +177,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("call")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("call")} className={styles.counterRight}>
-              <strong>{call}</strong>
+              <strong>{calls}</strong>
             </div>
           </div>
         </div>

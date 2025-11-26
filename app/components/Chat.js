@@ -13,7 +13,6 @@ export default function Chat() {
   const [testResponse, setTestResponse] = useState(null);
 
 
-
   useEffect(() => {
     setOffice(localStorage.getItem('office'));
     setName(localStorage.getItem('name'));
@@ -64,6 +63,8 @@ export default function Chat() {
     try {
       socket.send(JSON.stringify(chatObject));
       setMessage('');
+      const messageAudio = new Audio('/ping.mp3');
+      messageAudio.play();
       console.log('message sent to server');
     } catch (error) {
       console.error(error, 'message failed to send');

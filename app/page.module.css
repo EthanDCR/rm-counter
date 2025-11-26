@@ -300,3 +300,60 @@ a.secondary {
 .submitContainer:hover h2 {
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .main {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .counter {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    padding: 0 10px;
+  }
+
+  .counter h1 {
+    font-size: 14px;
+    width: 80px;
+    margin-left: 5px;
+  }
+
+  .counter p {
+    font-size: 12px;
+    width: 35px;
+  }
+
+  .counterRight {
+    width: 100px;
+    font-size: 28px;
+  }
+
+  .decrementBtn {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .counterControls {
+    gap: 8px;
+  }
+
+  .buttons,
+  .submitContainer h2 {
+    width: 100%;
+    max-width: 100%;
+  }
+}

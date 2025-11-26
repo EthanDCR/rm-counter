@@ -50,12 +50,12 @@ export async function getAllStats(userId) {
   const db = client();
   const result = await db.execute({
     sql: `SELECT
-            SUM(leads) as leads,
-            SUM(call) as calls,
-            SUM(knocks) as knocks,
-            SUM(inspections) as inspections,
-            SUM(presentations) as presentations,
-            SUM(closes) as closes
+            COALESCE(SUM(leads), 0) as leads,
+            COALESCE(SUM(call), 0) as calls,
+            COALESCE(SUM(knocks), 0) as knocks,
+            COALESCE(SUM(inspections), 0) as inspections,
+            COALESCE(SUM(presentations), 0) as presentations,
+            COALESCE(SUM(closes), 0) as closes
           FROM daily_activities
           WHERE user_id = ?`,
     args: [userId]
@@ -65,12 +65,12 @@ export async function getAllStats(userId) {
 
   return {
     time: 'allTime',
-    leads: row.leads || 0,
-    calls: row.calls || 0,
-    knocks: row.knocks || 0,
-    inspections: row.inspections || 0,
-    presentations: row.presentations || 0,
-    closes: row.closes || 0,
+    leads: row.leads,
+    calls: row.calls,
+    knocks: row.knocks,
+    inspections: row.inspections,
+    presentations: row.presentations,
+    closes: row.closes,
   };
 }
 

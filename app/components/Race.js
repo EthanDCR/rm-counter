@@ -15,7 +15,7 @@ export default function Race() {
     if (!ctx) return;
 
     const finishLine = new Image();
-    finishLine.src = "/finishline.jpg";
+    finishLine.src = "/finishlineclear.webp";
 
     finishLine.onload = () => {
       ctx.drawImage(finishLine, 0, 0, 460, 100);
