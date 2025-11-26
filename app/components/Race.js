@@ -18,26 +18,32 @@ export default function Race() {
     const rocketImg2 = new Image();
     const rocketImg3 = new Image();
     const rocketImg4 = new Image();
+    const rocketImg5 = new Image();
 
     rocketImg.src = "/rocket1.png";
     rocketImg2.src = "/rocket2.png";
     rocketImg3.src = "/rocket3.png";
     rocketImg4.src = "/rocket4.png";
+    rocketImg5.src = "/rocket5.png";
 
-    //400 x 750
+    //460 x 750
 
     rocketImg.onload = () => {
-      ctx.drawImage(rocketImg, 10, 625, 72, 72);
+      ctx.drawImage(rocketImg, 15, 625, 72, 72);
     }
 
     rocketImg2.onload = () => {
-      ctx.drawImage(rocketImg, 110, 625, 72, 72);
+      ctx.drawImage(rocketImg, 100, 625, 72, 72);
     }
     rocketImg3.onload = () => {
-      ctx.drawImage(rocketImg, 210, 625, 72, 72);
+      ctx.drawImage(rocketImg, 190, 625, 72, 72);
     }
     rocketImg4.onload = () => {
-      ctx.drawImage(rocketImg, 310, 625, 72, 72);
+      ctx.drawImage(rocketImg, 280, 625, 72, 72);
+    }
+
+    rocketImg5.onload = () => {
+      ctx.drawImage(rocketImg, 370, 625, 72, 72);
     }
 
   }, []);
@@ -52,7 +58,7 @@ export default function Race() {
         </div>
 
         <div>
-          <canvas ref={canvasRef} width={400} height={750}></canvas>
+          <canvas ref={canvasRef} width={460} height={750}></canvas>
         </div>
 
       </div>

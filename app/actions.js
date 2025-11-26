@@ -76,39 +76,6 @@ export async function getAllStats(userId) {
 
 // 2025-11-26
 
-const result = await db.execute({
-  sql: `SELECT leads, call, knocks, inspections, presentations, closes
-          FROM daily_activities
-          WHERE user_id = ? AND date = ?`,
-  args: [userId, today]
-});
-
-if (result.rows.length === 0) {
-  // No record for today yet
-  return {
-    time: 'today',
-    leads: 0,
-    calls: 0,
-    knocks: 0,
-    inspections: 0,
-    presentations: 0,
-    closes: 0,
-  };
-}
-
-const row = result.rows[0];
-return {
-  time: 'today',
-  leads: row.leads || 0,
-  calls: row.call || 0,
-  knocks: row.knocks || 0,
-  inspections: row.inspections || 0,
-  presentations: row.presentations || 0,
-  closes: row.closes || 0,
-};
-
-
-
 export async function submitStats(userId, stats) {
   const db = client();
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
