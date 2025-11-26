@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { getAllStats } from "../actions"
-import { getTodayStats } from "../actions";
 import { useState } from "react";
 import styles from "./stats.module.css";
 
@@ -19,7 +18,7 @@ export default function Stats({ viewMode }) {
   useEffect(() => {
     const getStats = async () => {
       const allStats = await getAllStats();
-      const todayStats = await getTodayStats();
+      const todayStats = getTodayStats();
       const sumKnocksCalls = (allStats.knocks + allStats.calls);
 
       if (viewMode === "allTime") {

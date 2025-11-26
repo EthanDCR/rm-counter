@@ -96,21 +96,6 @@ export default function Chat() {
             <p>chat message here</p>
           </div>
 
-          <div className={styles.chatMessage}>
-            <h6>Name:</h6>
-            <p>chat message here</p>
-          </div>
-
-          <div className={styles.chatMessage}>
-            <h6>Name:</h6>
-            <p>chat message here</p>
-          </div>
-
-          <div className={styles.chatMessage}>
-            <h6>Name:</h6>
-            <p>chat message here</p>
-          </div>
-
           {testResponse ?
             <div className={styles.chatMessage}>
               <h6>Server Response:</h6>

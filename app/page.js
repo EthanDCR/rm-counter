@@ -6,9 +6,11 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllStats } from "./actions";
-import { getTodayStats } from "./actions";
 import Stats from "./components/Stats";
 import Chat from "./components/Chat";
+import Race from "./components/Race";
+import { getTodayStatsFromLocalStorage } from "@/utils/localStorage";
+
 
 
 export default function Home() {
@@ -24,24 +26,28 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
 
 
+
   useEffect(() => {
     const getStats = async () => {
+      const userId = localStorage.getItem('userId');
+      if (!userId) return;
 
       let allStats;
 
       if (viewMode === "today") {
-        allStats = await getTodayStats();
+        allStats = getTodayStatsFromLocalStorage();
       } else if (viewMode === "allTime") {
-        allStats = await getAllStats();
+        allStats = await getAllStats(userId);
       }
 
-
-      setleads(allStats.leads);
-      setCalls(allStats.calls);
-      setknocks(allStats.knocks);
-      setinspections(allStats.inspections);
-      setpresentations(allStats.presentations);
-      setcloses(allStats.closes);
+      if (allStats) {
+        setleads(allStats.leads);
+        setCalls(allStats.calls);
+        setknocks(allStats.knocks);
+        setinspections(allStats.inspections);
+        setpresentations(allStats.presentations);
+        setcloses(allStats.closes);
+      }
     }
     getStats();
   }, [viewMode]);
@@ -198,6 +204,7 @@ export default function Home() {
         </div>
       </main >
       <Chat></Chat>
+      <Race></Race>
     </div >
   );
 }
