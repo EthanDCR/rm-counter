@@ -138,18 +138,9 @@ export default function Home() {
           <button onClick={() => changeView("allTime")}>All Time</button>
           <button onClick={() => { localStorage.clear(); isLoggedIn() }}>Logout</button>
         </div>
-        <div className={styles.counter}>
-          <h1>LEADS</h1>
-          <div className={styles.counterControls}>
-            <button onClick={() => handleDecrement("leads")} className={styles.decrementBtn}>-</button>
-            <div onClick={() => handleClick("leads")} className={styles.counterRight}>
-              <strong>{leads}</strong>
-            </div>
-          </div>
-        </div>
 
         <div className={styles.counter}>
-          <h1>CALLS</h1>
+          <h1>CALLS</h1><p>+1</p>
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("call")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("call")} className={styles.counterRight}>
@@ -159,7 +150,17 @@ export default function Home() {
         </div>
 
         <div className={styles.counter}>
-          <h1>KNOCKS</h1>
+          <h1>LEADS</h1><p>+20</p>
+          <div className={styles.counterControls}>
+            <button onClick={() => handleDecrement("leads")} className={styles.decrementBtn}>-</button>
+            <div onClick={() => handleClick("leads")} className={styles.counterRight}>
+              <strong>{leads}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.counter}>
+          <h1>KNOCKS</h1><p>+1</p>
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("knocks")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("knocks")} className={styles.counterRight}>
@@ -169,7 +170,7 @@ export default function Home() {
         </div>
 
         <div className={styles.counter}>
-          <h1>INSPECTIONS</h1>
+          <h1>INSPECTIONS</h1><p>+10</p>
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("inspections")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("inspections")} className={styles.counterRight}>
@@ -179,7 +180,7 @@ export default function Home() {
         </div>
 
         <div className={styles.counter}>
-          <h1>PRESENTATIONS</h1>
+          <h1>PRESENTATIONS</h1><p>+20</p>
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("presentations")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("presentations")} className={styles.counterRight}>
@@ -189,7 +190,7 @@ export default function Home() {
         </div>
 
         <div className={styles.counter}>
-          <h1>CLOSES</h1>
+          <h1>CLOSES</h1><p>+50</p>
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("closes")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("closes")} className={styles.counterRight}>

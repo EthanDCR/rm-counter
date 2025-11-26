@@ -114,7 +114,7 @@ export default function Chat() {
           if (e.key === 'Enter') {
             handleMessageSend();
           }
-        }} onChange={(e) => setMessage(e.target.value)} type="text" placeholder="Enter Your Message Here" />
+        }} onChange={(e) => setMessage(e.target.value)} type="text" placeholder="..." />
         <button onClick={() => handleMessageSend()}>Send Message</button>
 
       </div>

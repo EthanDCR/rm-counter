@@ -117,7 +117,7 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.page > button {
+.page>button {
   padding: 14px;
   font-size: 15px;
   font-weight: 600;
@@ -130,7 +130,7 @@
   letter-spacing: 0.5px;
 }
 
-.page > button:hover {
+.page>button:hover {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border-color: #3b82f6;
   color: #fff;

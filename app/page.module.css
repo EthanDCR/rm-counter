@@ -165,6 +165,18 @@ a.secondary {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
+  margin-right: 8px;
+  width: 50px;
+  text-align: left;
+}
+
+.counter p {
+  color: #3b82f6;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  width: 40px;
+  text-align: left;
 }
 
 .counterRight {

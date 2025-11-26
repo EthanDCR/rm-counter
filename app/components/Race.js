@@ -14,51 +14,38 @@ export default function Race() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const rocketImg = new Image();
-    const rocketImg2 = new Image();
-    const rocketImg3 = new Image();
-    const rocketImg4 = new Image();
-    const rocketImg5 = new Image();
+    const finishLine = new Image();
+    finishLine.src = "/finishline.jpg";
 
-    rocketImg.src = "/rocket1.png";
-    rocketImg2.src = "/rocket2.png";
-    rocketImg3.src = "/rocket3.png";
-    rocketImg4.src = "/rocket4.png";
-    rocketImg5.src = "/rocket5.png";
+    finishLine.onload = () => {
+      ctx.drawImage(finishLine, 0, 0, 460, 100);
+    };
 
-    //460 x 750
-
-    rocketImg.onload = () => {
-      ctx.drawImage(rocketImg, 15, 625, 72, 72);
-    }
-
-    rocketImg2.onload = () => {
-      ctx.drawImage(rocketImg, 100, 625, 72, 72);
-    }
-    rocketImg3.onload = () => {
-      ctx.drawImage(rocketImg, 190, 625, 72, 72);
-    }
-    rocketImg4.onload = () => {
-      ctx.drawImage(rocketImg, 280, 625, 72, 72);
-    }
-
-    rocketImg5.onload = () => {
-      ctx.drawImage(rocketImg, 370, 625, 72, 72);
-    }
+    finishLine.onerror = () => {
+      console.error('Failed to load finishLine.jpg - check if file exists in /public/');
+    };
 
   }, []);
-
-
 
   return (
     <>
       <div className={styles.page}>
         <div>
-          <h2> Todays Leaders!</h2>
+          <h2>TODAYS LEADERS!</h2>
         </div>
 
-        <div>
-          <canvas ref={canvasRef} width={460} height={750}></canvas>
+        <div className={styles.canvasContainer}>
+          <canvas ref={canvasRef} width={460} height={775}></canvas>
+          <img src="/rocketclear.gif" alt="Tulsa rocket" className={styles.rocket1} />
+          <img src="/rocketclear.gif" alt="Dallas rocket" className={styles.rocket2} />
+          <img src="/rocketclear.gif" alt="St Louis rocket" className={styles.rocket3} />
+          <img src="/rocketclear.gif" alt="Wichita rocket" className={styles.rocket4} />
+          <img src="/rocketclear.gif" alt="Remote rocket" className={styles.rocket5} />
+          <div className={styles.label1}>TULSA</div>
+          <div className={styles.label2}>DALLAS</div>
+          <div className={styles.label3}>ST LOUIS</div>
+          <div className={styles.label4}>WICHITA</div>
+          <div className={styles.label5}>REMOTE</div>
         </div>
 
       </div>
