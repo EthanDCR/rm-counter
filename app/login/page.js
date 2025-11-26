@@ -16,6 +16,8 @@ export default function login() {
   const [office, setOffice] = useState(null);
   const [notFound, setNotFound] = useState(false);
   const [enterAllFields, setEnterAllFields] = useState(false);
+  const [loginType, setLoginType] = useState('login');
+
 
 
   const router = useRouter();
@@ -73,31 +75,58 @@ export default function login() {
     router.push('/');
   }
 
-  return (
-    <>
-      <div className={styles.page}>
-        <div className={styles.loginContainer}>
-          <h2>Welcome Back</h2>
-          <input placeholder="Username" type="text" onChange={(e) => setUsername(e.target.value)} />
-          <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
-          <input placeholder="Your Name" type="text" onChange={(e) => setName(e.target.value)} />
 
-          <select className={styles.dropDown} onChange={(e) => setOffice(e.target.value)}>
-            <option value="null">Select your office location</option>
-            <option value="tulsa">Tulsa</option>
-            <option value="stLouis">St Louis</option>
-            <option value="dallas">Dallas</option>
-            <option value="wichita">Wichita</option>
-            <option value="remote">Remote</option>
-          </select>
-
-
-          <button onClick={() => handleLogin()}>Login</button>
-          <button onClick={() => createNewUser()}>Create New Account</button>
-          {notFound && <p className={styles.notFound}> USER NOT FOUND </p>}
-          {enterAllFields && <p className={styles.notFound}>ENTER ALL FIELDS</p>}
+  if (loginType === 'login') {
+    return (
+      <>
+        <div className={styles.page}>
+          <div className={styles.loginContainer}>
+            <h2>Welcome Back</h2>
+            <input placeholder="Username" type="text" onChange={(e) => setUsername(e.target.value)} />
+            <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+            <button onClick={() => handleLogin()}>Login</button>
+            <p className={styles.accountType}>dont have an account?</p>
+            <p onClick={() => setLoginType('createNewAccount')} className={styles.accountTypeLink}>create a new account here</p>
+            {notFound && <p className={styles.notFound}> USER NOT FOUND </p>}
+            {enterAllFields && <p className={styles.notFound}>ENTER ALL FIELDS</p>}
+          </div>
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  } else if (loginType === 'createNewAccount') {
+    return (
+      <>
+        <div className={styles.page}>
+          <div className={styles.loginContainer}>
+            <h2>Create a new account</h2>
+            <input placeholder="Username" type="text" onChange={(e) => setUsername(e.target.value)} />
+            <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+            <input placeholder="Your Name" type="text" onChange={(e) => setName(e.target.value)} />
+
+            <select className={styles.dropDown} onChange={(e) => setOffice(e.target.value)}>
+              <option value="null">Select your office location</option>
+              <option value="tulsa">Tulsa</option>
+              <option value="stLouis">St Louis</option>
+              <option value="dallas">Dallas</option>
+              <option value="wichita">Wichita</option>
+              <option value="remote">Remote</option>
+            </select>
+
+
+            <button onClick={() => createNewUser()}>Create Account</button>
+            <p className={styles.accountType}>already have an account?</p>
+            <p onClick={() => setLoginType('login')} className={styles.accountTypeLink}>sign in here</p>
+
+
+
+            {notFound && <p className={styles.notFound}> USER NOT FOUND </p>}
+            {enterAllFields && <p className={styles.notFound}>ENTER ALL FIELDS</p>}
+          </div>
+        </div>
+      </>
+    )
+
+
+
+  }
 }

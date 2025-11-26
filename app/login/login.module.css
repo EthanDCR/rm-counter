@@ -94,4 +94,20 @@
   outline: none;
 }
 
-.dropDown option {}
+
+.accountType {
+  color: black;
+}
+
+.accountTypeLink {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.accountTypeLink:hover {
+  color: blue;
+  opacity: 80%;
+  text-decoration: underline;
+}
