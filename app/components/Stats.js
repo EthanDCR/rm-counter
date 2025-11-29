@@ -17,8 +17,8 @@ export default function Stats({ viewMode }) {
 
   useEffect(() => {
     const getStats = async () => {
-      const allStats = await getAllStats();
-      const todayStats = getTodayStats();
+      const userId = localStorage.getItem('userId');
+      const allStats = await getAllStats(userId);
       const sumKnocksCalls = (allStats.knocks + allStats.calls);
 
       if (viewMode === "allTime") {
@@ -29,7 +29,7 @@ export default function Stats({ viewMode }) {
 
       } else if (viewMode === "today") {
         setCallsToLeads(getPercent(todayStats.leads, todayStats.calls));
-        setPresentationToClose(getPercent(todayStats.presentations, todayStats.closes));
+        setPresentationToClose(getPercent(todayStats.closes, todayStats.presentations));
         setKnocksToLeads(getPercent(todayStats.leads, todayStats.knocks));
         setCallsAndKnocksToCloses(getPercent(todayStats.closes, sumKnocksCalls));
       }

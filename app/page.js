@@ -10,8 +10,6 @@ import Chat from "./components/Chat";
 import Race from "./components/Race";
 import { getTodayStatsFromLocalStorage } from "@/utils/localStorage";
 
-
-
 export default function Home() {
   const router = useRouter();
   const [leads, setleads] = useState(0);
@@ -23,9 +21,6 @@ export default function Home() {
   const [name, setName] = useState("");
   const [viewMode, setViewMode] = useState("today");
   const [messages, setMessages] = useState([]);
-
-
-
 
   useEffect(() => {
     const getStats = async () => {
@@ -174,8 +169,8 @@ export default function Home() {
       <main className={styles.main}>
         {name ? <h1>{name.toUpperCase()}S COUNTER</h1> : <h1>COUNTER</h1>}
         <div className={styles.buttons}>
-          <button onClick={() => changeView("today")}>Today</button>
-          <button onClick={() => changeView("allTime")}>All Time</button>
+          <button className={viewMode === "today" ? styles.active : ""} onClick={() => changeView("today")}>Today</button>
+          <button className={viewMode === "allTime" ? styles.active : ""} onClick={() => changeView("allTime")}>All Time</button>
           <button onClick={() => { localStorage.clear(); isLoggedIn() }}>Logout</button>
         </div>
 
