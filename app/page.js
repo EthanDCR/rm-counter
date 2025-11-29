@@ -1,7 +1,6 @@
 
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -84,9 +83,12 @@ export default function Home() {
 
   const handleClick = (action) => {
 
+    if (viewMode === 'allTime') {
+      return;
+    }
+
     const ping = new Audio('/notifping.mp3');
     ping.play();
-
 
     switch (action) {
       case "leads":
@@ -112,6 +114,11 @@ export default function Home() {
 
 
   const handleDecrement = (action) => {
+
+    if (viewMode === 'allTime') {
+      return;
+    }
+
     const ping = new Audio('/minuspoints.mp3');
     ping.play();
 
