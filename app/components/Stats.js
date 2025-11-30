@@ -3,41 +3,47 @@ import { getAllStats } from "../actions"
 import { useState } from "react";
 import styles from "./stats.module.css";
 import { getTodayStatsFromLocalStorage } from "@/utils/localStorage";
+import { getPercent } from "@/utils/percent";
 
-export default function Stats({ viewMode }) {
+
+export default function Stats({ viewMode, flag }) {
 
   const [callsToLeads, setCallsToLeads] = useState(0);
   const [presentationsToClose, setPresentationToClose] = useState(0);
   const [knocksToLeads, setKnocksToLeads] = useState(0);
   const [callsAndKnocksToCloses, setCallsAndKnocksToCloses] = useState(0);
 
-  const getPercent = (stat1, stat2) => {
-    const percent = (stat1 / stat2) * 100;
-    return percent.toFixed(0);
+  const getStats = async () => {
+    const userId = localStorage.getItem('userId');
+    const allStats = await getAllStats(userId);
+    const sumKnocksCalls = (allStats.knocks + allStats.calls);
+
+    if (viewMode === "allTime") {
+      setCallsToLeads(getPercent(allStats.leads, allStats.calls));
+      setPresentationToClose(getPercent(allStats.closes, allStats.presentations));
+      setKnocksToLeads(getPercent(allStats.leads, allStats.knocks));
+      setCallsAndKnocksToCloses(getPercent(allStats.closes, sumKnocksCalls));
+
+    } else if (viewMode === "today") {
+      const todayStats = await getTodayStatsFromLocalStorage();
+      setCallsToLeads(getPercent(todayStats.leads, todayStats.calls));
+      setPresentationToClose(getPercent(todayStats.closes, todayStats.presentations));
+      setKnocksToLeads(getPercent(todayStats.leads, todayStats.knocks));
+      setCallsAndKnocksToCloses(getPercent(todayStats.closes, sumKnocksCalls));
+    }
   }
 
   useEffect(() => {
-    const getStats = async () => {
-      const userId = localStorage.getItem('userId');
-      const allStats = await getAllStats(userId);
-      const sumKnocksCalls = (allStats.knocks + allStats.calls);
-
-      if (viewMode === "allTime") {
-        setCallsToLeads(getPercent(allStats.leads, allStats.calls));
-        setPresentationToClose(getPercent(allStats.closes, allStats.presentations));
-        setKnocksToLeads(getPercent(allStats.leads, allStats.knocks));
-        setCallsAndKnocksToCloses(getPercent(allStats.closes, sumKnocksCalls));
-
-      } else if (viewMode === "today") {
-        const todayStats = await getTodayStatsFromLocalStorage();
-        setCallsToLeads(getPercent(todayStats.leads, todayStats.calls));
-        setPresentationToClose(getPercent(todayStats.closes, todayStats.presentations));
-        setKnocksToLeads(getPercent(todayStats.leads, todayStats.knocks));
-        setCallsAndKnocksToCloses(getPercent(todayStats.closes, sumKnocksCalls));
-      }
-    }
     getStats();
+    // also a flag that changes the stats dispay based on the viewmode i passed from the main counter page
   }, [viewMode]);
+
+
+  useEffect(() => {
+    //this is legit just a flag that i change on main page when the stats change to fire reload of percentages
+    getStats();
+  }, [flag]);
+
 
   return (
     <>

@@ -21,6 +21,8 @@ export default function Home() {
   const [name, setName] = useState("");
   const [viewMode, setViewMode] = useState("today");
   const [messages, setMessages] = useState([]);
+  const [flag, setFlag] = useState(false);
+
 
   useEffect(() => {
     const getStats = async () => {
@@ -95,31 +97,42 @@ export default function Home() {
         const newLeads = leads + 1;
         setleads(newLeads);
         localStorage.setItem('leads', newLeads);
+        setFlag(!flag);
         break;
+
       case "call":
         const newCalls = calls + 1;
         setCalls(newCalls);
         localStorage.setItem('calls', newCalls);
+        setFlag(!flag);
         break;
+
       case "knocks":
         const newKnocks = knocks + 1;
         setknocks(newKnocks);
         localStorage.setItem('knocks', newKnocks);
+        setFlag(!flag);
         break;
+
       case "inspections":
         const newInspections = inspections + 1;
         setinspections(newInspections);
         localStorage.setItem('inspections', newInspections);
+        setFlag(!flag);
         break;
+
       case "presentations":
         const newPresentations = presentations + 1;
         setpresentations(newPresentations);
         localStorage.setItem('presentations', newPresentations);
+        setFlag(!flag);
         break;
+
       case "closes":
         const newCloses = closes + 1;
         setcloses(newCloses);
         localStorage.setItem('closes', newCloses);
+        setFlag(!flag);
         break;
     }
   }
@@ -141,7 +154,9 @@ export default function Home() {
         const newLeads = leads - 1;
         setleads(newLeads);
         localStorage.setItem('leads', newLeads);
+        setFlag(!flag);
         break;
+
       case "call":
         if (calls === 0) {
           return;
@@ -149,6 +164,7 @@ export default function Home() {
         const newCalls = calls - 1;
         setCalls(newCalls);
         localStorage.setItem('calls', newCalls);
+        setFlag(!flag);
         break;
 
       case "knocks":
@@ -158,6 +174,7 @@ export default function Home() {
         const newKnocks = knocks - 1;
         setknocks(newKnocks);
         localStorage.setItem('knocks', newKnocks);
+        setFlag(!flag);
         break;
 
       case "inspections":
@@ -167,6 +184,7 @@ export default function Home() {
         const newInspections = inspections - 1;
         setinspections(newInspections);
         localStorage.setItem('inspections', newInspections);
+        setFlag(!flag);
         break;
 
       case "presentations":
@@ -176,6 +194,7 @@ export default function Home() {
         const newPresentations = presentations - 1;
         setpresentations(newPresentations);
         localStorage.setItem('presentations', newPresentations);
+        setFlag(!flag);
         break;
 
       case "closes":
@@ -185,13 +204,14 @@ export default function Home() {
         const newCloses = closes - 1;
         setcloses(newCloses);
         localStorage.setItem('closes', newCloses);
+        setFlag(!flag);
         break;
     }
   }
 
   return (
     <div className={styles.page}>
-      <Stats viewMode={viewMode}></Stats>
+      <Stats viewMode={viewMode} flag={flag}></Stats>
       <main className={styles.main}>
         {name ? <h1>{name.toUpperCase()}S COUNTER</h1> : <h1>COUNTER</h1>}
         <div className={styles.buttons}>
@@ -215,7 +235,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("leads")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("leads")} className={styles.counterRight}>
-              <strong>{leads}</strong>
+              <strong>{leads ? leads : 0}</strong>
             </div>
           </div>
         </div>
@@ -225,7 +245,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("knocks")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("knocks")} className={styles.counterRight}>
-              <strong>{knocks}</strong>
+              <strong>{knocks ? knocks : 0}</strong>
             </div>
           </div>
         </div>
@@ -235,7 +255,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("inspections")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("inspections")} className={styles.counterRight}>
-              <strong>{inspections}</strong>
+              <strong>{inspections ? inspections : 0}</strong>
             </div>
           </div>
         </div>
@@ -245,7 +265,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("presentations")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("presentations")} className={styles.counterRight}>
-              <strong>{presentations}</strong>
+              <strong>{presentations ? presentations : 0}</strong>
             </div>
           </div>
         </div>
@@ -255,7 +275,7 @@ export default function Home() {
           <div className={styles.counterControls}>
             <button onClick={() => handleDecrement("closes")} className={styles.decrementBtn}>-</button>
             <div onClick={() => handleClick("closes")} className={styles.counterRight}>
-              <strong>{closes}</strong>
+              <strong>{closes ? closes : 0}</strong>
             </div>
           </div>
         </div>
