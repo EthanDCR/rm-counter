@@ -31,11 +31,15 @@ export default function Home() {
 
       if (viewMode === "today") {
         allStats = getTodayStatsFromLocalStorage();
+        setleads(allStats.leads);
+        setCalls(allStats.calls);
+        setknocks(allStats.knocks);
+        setinspections(allStats.inspections);
+        setpresentations(allStats.presentations);
+        setcloses(allStats.closes);
+
       } else if (viewMode === "allTime") {
         allStats = await getAllStats(userId);
-      }
-
-      if (allStats) {
         setleads(allStats.leads);
         setCalls(allStats.calls);
         setknocks(allStats.knocks);
@@ -43,6 +47,7 @@ export default function Home() {
         setpresentations(allStats.presentations);
         setcloses(allStats.closes);
       }
+
     }
     getStats();
   }, [viewMode]);
@@ -87,26 +92,37 @@ export default function Home() {
 
     switch (action) {
       case "leads":
-        setleads(leads + 1);
+        const newLeads = leads + 1;
+        setleads(newLeads);
+        localStorage.setItem('leads', newLeads);
         break;
       case "call":
-        setCalls(calls + 1);
+        const newCalls = calls + 1;
+        setCalls(newCalls);
+        localStorage.setItem('calls', newCalls);
         break;
       case "knocks":
-        setknocks(knocks + 1);
+        const newKnocks = knocks + 1;
+        setknocks(newKnocks);
+        localStorage.setItem('knocks', newKnocks);
         break;
       case "inspections":
-        setinspections(inspections + 1);
+        const newInspections = inspections + 1;
+        setinspections(newInspections);
+        localStorage.setItem('inspections', newInspections);
         break;
       case "presentations":
-        setpresentations(presentations + 1);
+        const newPresentations = presentations + 1;
+        setpresentations(newPresentations);
+        localStorage.setItem('presentations', newPresentations);
         break;
       case "closes":
-        setcloses(closes + 1);
+        const newCloses = closes + 1;
+        setcloses(newCloses);
+        localStorage.setItem('closes', newCloses);
         break;
     }
   }
-
 
   const handleDecrement = (action) => {
 
@@ -117,48 +133,58 @@ export default function Home() {
     const ping = new Audio('/minuspoints.mp3');
     ping.play();
 
-
-
     switch (action) {
       case "leads":
         if (leads === 0) {
           break;
         }
-        setleads(leads - 1);
+        const newLeads = leads - 1;
+        setleads(newLeads);
+        localStorage.setItem('leads', newLeads);
         break;
       case "call":
         if (calls === 0) {
           return;
         }
-        setCalls(calls - 1);
+        const newCalls = calls - 1;
+        setCalls(newCalls);
+        localStorage.setItem('calls', newCalls);
         break;
 
       case "knocks":
         if (knocks === 0) {
           break;
         }
-        setknocks(knocks - 1);
+        const newKnocks = knocks - 1;
+        setknocks(newKnocks);
+        localStorage.setItem('knocks', newKnocks);
         break;
 
       case "inspections":
         if (inspections === 0) {
           break;
         }
-        setinspections(inspections - 1);
+        const newInspections = inspections - 1;
+        setinspections(newInspections);
+        localStorage.setItem('inspections', newInspections);
         break;
 
       case "presentations":
         if (presentations === 0) {
           break;
         }
-        setpresentations(presentations - 1);
+        const newPresentations = presentations - 1;
+        setpresentations(newPresentations);
+        localStorage.setItem('presentations', newPresentations);
         break;
 
       case "closes":
         if (closes === 0) {
           break;
         }
-        setcloses(closes - 1);
+        const newCloses = closes - 1;
+        setcloses(newCloses);
+        localStorage.setItem('closes', newCloses);
         break;
     }
   }

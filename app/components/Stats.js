@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { getAllStats } from "../actions"
 import { useState } from "react";
 import styles from "./stats.module.css";
+import { getTodayStatsFromLocalStorage } from "@/utils/localStorage";
 
 export default function Stats({ viewMode }) {
 
@@ -28,6 +29,7 @@ export default function Stats({ viewMode }) {
         setCallsAndKnocksToCloses(getPercent(allStats.closes, sumKnocksCalls));
 
       } else if (viewMode === "today") {
+        const todayStats = await getTodayStatsFromLocalStorage();
         setCallsToLeads(getPercent(todayStats.leads, todayStats.calls));
         setPresentationToClose(getPercent(todayStats.closes, todayStats.presentations));
         setKnocksToLeads(getPercent(todayStats.leads, todayStats.knocks));
