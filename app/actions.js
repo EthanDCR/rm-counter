@@ -80,14 +80,12 @@ export async function submitStats(userId, stats) {
   const db = client();
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
 
-  // Check if record exists for today
   const existing = await db.execute({
     sql: 'SELECT id FROM daily_activities WHERE user_id = ? AND date = ?',
     args: [userId, today]
   });
 
   if (existing.rows.length > 0) {
-    // Update existing record
     await db.execute({
       sql: `UPDATE daily_activities
             SET leads = ?, call = ?, knocks = ?, inspections = ?, presentations = ?, closes = ?
@@ -104,7 +102,6 @@ export async function submitStats(userId, stats) {
       ]
     });
   } else {
-    // Insert new record
     await db.execute({
       sql: `INSERT INTO daily_activities (user_id, date, leads, call, knocks, inspections, presentations, closes)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -123,5 +120,11 @@ export async function submitStats(userId, stats) {
 
   return { success: true };
 }
+
+
+
+
+
+
 
 

@@ -22,6 +22,7 @@ export default function Home() {
   const [viewMode, setViewMode] = useState("today");
   const [messages, setMessages] = useState([]);
   const [flag, setFlag] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
@@ -209,6 +210,19 @@ export default function Home() {
     }
   }
 
+
+  const handleOpen = () => {
+    setShowModal(true);
+  }
+
+  const handleClose = () => {
+    setShowModal(false);
+  }
+
+  const handleSubmitStats = () => {
+
+  }
+
   return (
     <div className={styles.page}>
       <Stats viewMode={viewMode} flag={flag}></Stats>
@@ -281,10 +295,26 @@ export default function Home() {
         </div>
 
 
-        <div className={styles.submitContainer} onClick={() => console.log("submit stats clicked")}>
+        <div className={styles.submitContainer} onClick={() => handleOpen()}>
           <h2>Submit Todays Stats</h2>
         </div>
-      </main >
+
+      </main>
+
+      {showModal && (
+        <div className={styles.modalOverlay} onClick={handleClose}>
+          <div className={styles.modalDiv} onClick={(e) => e.stopPropagation()}>
+            <div>
+              <p>Are you sure you want to submit your stats for the day?</p>
+            </div>
+
+            <div className={styles.modalButtons}>
+              <button className={styles.modalSubmitBtn} onClick={handleSubmitStats}>Submit</button>
+              <button className={styles.modalCancelBtn} onClick={handleClose}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
       <Chat></Chat>
       <Race></Race>
     </div >

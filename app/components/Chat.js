@@ -20,6 +20,7 @@ export default function Chat() {
 
 
   useEffect(() => {
+
     const newSocket = new WebSocket("ws://localhost:5000");
     setSocket(newSocket);
 
