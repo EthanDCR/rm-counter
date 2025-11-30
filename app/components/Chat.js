@@ -82,15 +82,10 @@ export default function Chat() {
             {office ? <button>{office.toUpperCase()} CHAT</button> : <button>Null CHAT</button>}
             <button>ALL CHAT</button>
           </div>
-          {testResponse ?
+          {testResponse &&
             <div className={styles.chatMessage}>
               <h6>Server Response:</h6>
               <p>{testResponse}</p>
-            </div>
-            :
-            <div className={styles.chatMessage}>
-              <h6>Name:</h6>
-              <p>No response yet</p>
             </div>
           }
 

@@ -220,8 +220,10 @@ export default function Home() {
   }
 
   const handleSubmitStats = () => {
-
+    const allStats = getTodayStatsFromLocalStorage();
+    console.log(allStats);
   }
+
 
   return (
     <div className={styles.page}>
