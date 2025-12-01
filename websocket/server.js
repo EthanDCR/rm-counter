@@ -1,8 +1,39 @@
-const { parse } = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 const WebSocket = require('ws');
+const client = require('./db.js');
+
+
+//db stuff
+const db = client();
+
+const getUser = async (userName) => {
+  const db = await client();
+  const result = await db.execute({
+    sql: 'select * from users where username = ?',
+    args: [userName]
+  })
+
+  if (!result.rows[0]) {
+    return null;
+  }
+  else {
+    return JSON.parse(JSON.stringify(result.rows[0]));
+  }
+}
+
+
+//test log a user
+console.log(getUser('clinteth000'));
+
+
+
+
+// socket stuff
 
 const wss = new WebSocket.Server({ port: 5000 });
 const clients = [];
+
 
 wss.on('connection', (ws) => {
   console.log('ws connected, total clients: ', clients.length + 1);

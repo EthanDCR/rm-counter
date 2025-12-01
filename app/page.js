@@ -32,6 +32,20 @@ export default function Home() {
 
       let allStats;
 
+
+      const day = new Date().toDateString();
+      const date = localStorage.getItem('date');
+      if (day != date) {
+        localStorage.setItem('date', day);
+        localStorage.removeItem('calls');
+        localStorage.removeItem('leads');
+        localStorage.removeItem('knocks');
+        localStorage.removeItem('inspections');
+        localStorage.removeItem('presentations');
+        localStorage.removeItem('closes');
+      }
+
+
       if (viewMode === "today") {
         allStats = getTodayStatsFromLocalStorage();
         setleads(allStats.leads);
