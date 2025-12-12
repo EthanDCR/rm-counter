@@ -3,8 +3,16 @@ dotenv.config();
 const WebSocket = require('ws');
 const client = require('./db.js');
 
+const line = () => {
+  console.log("=============================================================");
+}
 
-//db stuff
+
+
+
+
+//db stuff / function defs ----------------------------------
+
 const db = client();
 
 const getUser = async (userName) => {
@@ -22,20 +30,53 @@ const getUser = async (userName) => {
   }
 }
 
+const getOfficeNumbers = async () => {
+  const db = client();
+  const resultObject = await db.execute('SELECT office, COUNT(*) as userCount FROM users GROUP BY office');
 
-//test log a user
-console.log(getUser('clinteth000'));
+  const officePoints = [];
+  for (let i = 0; i < resultObject.rows.length; i++) {
+    const row = resultObject.rows[i];
+    const pointsNeeded = row.userCount * 100;
+
+    officePoints.push({
+      office: row.office,
+      userCount: row.userCount,
+      pointsNeeded: pointsNeeded,
+    })
+    console.log(officePoints);
+    return officePoints;
+  }
+
+}
+
+
+// -----------  program flow start
+
+const officeNumbers = getOfficeNumbers();
+setInterval(async () => {
+  const today = new Date();
+  if (today.getHours() === 0 && today.getMinutes() === 0) {
+    officeNumbers = await getOfficeNumbers();
+  }
+}, 6000);
+
+console.log(officeNumbers);
 
 
 
 
-// socket stuff
+// socket stuff ----------------------------------------------------
 
 const wss = new WebSocket.Server({ port: 5000 });
 const clients = [];
 
 
-wss.on('connection', (ws) => {
+wss.on('connection', async (ws) => {
+
+
+
+
   console.log('ws connected, total clients: ', clients.length + 1);
   clients.push(ws);
 
